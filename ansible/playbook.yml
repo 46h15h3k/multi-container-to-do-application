@@ -35,17 +35,28 @@
         append: true
       when: ansible_facts['distribution'] == "Amazon"
 
-    - name: Install the Docker Compose CLI plugin (AL2023)
-      dnf:
-        name: docker-compose-plugin
-        state: present
-      when: ansible_facts['distribution'] == "Amazon"
-
-    - name: Install Docker Compose plugin (Debian/Ubuntu)
+    - name: Install Docker Compose plugin (Debian/Ubuntu, available via apt)
       apt:
         name: docker-compose-plugin
         state: present
       when: ansible_facts['os_family'] == "Debian"
+
+    # AL2023's dnf repos don't carry docker-compose-plugin, and Amazon's own
+    # docker package doesn't bundle it either - pull the official binary
+    # straight from Docker's GitHub releases instead.
+    - name: Create CLI plugins directory (AL2023)
+      file:
+        path: /usr/libexec/docker/cli-plugins
+        state: directory
+        mode: "0755"
+      when: ansible_facts['distribution'] == "Amazon"
+
+    - name: Download Docker Compose plugin binary (AL2023)
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-{{ 'x86_64' if ansible_facts['architecture'] == 'x86_64' else 'aarch64' }}"
+        dest: /usr/libexec/docker/cli-plugins/docker-compose
+        mode: "0755"
+      when: ansible_facts['distribution'] == "Amazon"
 
     - name: Create application directory
       file:

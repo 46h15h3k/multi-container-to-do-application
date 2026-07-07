@@ -23,8 +23,8 @@ GitHub push → GitHub Actions → Docker Hub (image)
                                      ▼
                     EC2 (Terraform-provisioned, Ansible-configured)
                     ┌─────────────────────────────────────┐
-                    │  Nginx :80  →  API :3000  →  Mongo   │
-                    │        (docker-compose.prod.yml)     │
+                    │  Nginx :80  →  API :3000  →  Mongo  │
+                    │        (docker-compose.prod.yml)    │
                     └─────────────────────────────────────┘
 ```
 
