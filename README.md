@@ -5,8 +5,6 @@ demonstrate end-to-end DevOps practice: containerizing a multi-service app,
 provisioning cloud infrastructure as code, configuring it with Ansible, and
 automating deployment with GitHub Actions.
 
-Roadmap.sh project: [Multi-Container Application](https://roadmap.sh/projects/multi-container-service)
-
 ## What this demonstrates
 
 - **Containerization** — Node.js/Express API + MongoDB orchestrated with Docker Compose, with persistent data volumes and separate dev/prod configurations.
