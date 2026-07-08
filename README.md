@@ -22,7 +22,7 @@ automating deployment with GitHub Actions.
                 EC2 (Terraform-provisioned, Ansible-configured)
                     ┌─────────────────────────────────────┐
                     │  Nginx :80  →  API :3000  →  Mongo  │
-                    │        (docker-compose.prod.yml)    │
+                    │      (docker-compose.prod.yml)      │
                     └─────────────────────────────────────┘
 ```
 
